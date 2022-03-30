@@ -11,7 +11,11 @@ Calling `logger.Info()` or `logger.Error()` is safe before `logger.Init()`, to p
 ```go
 package main
 
-import "github.com/glifio/go-logger"
+import (
+	"errors"
+
+	"github.com/glifio/go-logger"
+)
 
 func main() {
 	// Initialize logger
@@ -36,6 +40,6 @@ func main() {
 	logger.Info("It works!")
 
 	// Log an error message
-	logger.error(errors.New("Oh no, it doesn't.."))
+	logger.Error(errors.New("Oh no, it doesn't.."))
 }
 ```
