@@ -62,10 +62,9 @@ func GetSentryGin() gin.HandlerFunc {
 
 func Info(info string) {
 	if !initialized {
-		log.Printf("Logger not initialized, failed to log info properly: %v", info)
-		return
+		log.Print(`Warning: Logger not initialized before calling "logger.Info()"`)
 	}
-	if options.SentryEnabled {
+	if initialized && options.SentryEnabled {
 		sentry.CaptureMessage(info)
 	}
 	log.Printf("Info: %v", info)
@@ -73,10 +72,9 @@ func Info(info string) {
 
 func Error(err error) {
 	if !initialized {
-		log.Printf("Logger not initialized, failed to log error properly: %v", err)
-		return
+		log.Print(`Warning: Logger not initialized before calling "logger.Error()"`)
 	}
-	if options.SentryEnabled {
+	if initialized && options.SentryEnabled {
 		sentry.CaptureException(err)
 	}
 	log.Printf("Error: %v", err)
