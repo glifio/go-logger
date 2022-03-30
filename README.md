@@ -15,6 +15,7 @@ import (
 	"errors"
 
 	"github.com/glifio/go-logger"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
