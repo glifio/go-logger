@@ -23,7 +23,7 @@ func main() {
 		SentryTraces:  0,
 	})
 	if err != nil {
-		log.Panic(err)
+		log.Fatal(err)
 	}
 
 	// Add sentry gin middleware (optional)
