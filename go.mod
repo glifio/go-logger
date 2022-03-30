@@ -3,8 +3,8 @@ module github.com/glifio/go-logger
 go 1.18
 
 require (
-	github.com/getsentry/sentry-go v0.13.0
-	github.com/gin-gonic/gin v1.7.7
+	github.com/getsentry/sentry-go v0.12.0
+	github.com/gin-gonic/gin v1.6.3
 )
 
 require (
