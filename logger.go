@@ -45,12 +45,15 @@ func Init(loggerOptions LoggerOptions) error {
 }
 
 func IsSentryEnabled() bool {
+	if !initialized {
+		log.Fatal(`Initialize logger before calling "logger.IsSentryEnabled()"`)
+	}
 	return options.SentryEnabled
 }
 
 func GetSentryGin() gin.HandlerFunc {
 	if !initialized || !options.SentryEnabled {
-		log.Fatal("Initialize logger with Sentry enabled before getting Sentry Gin middleware")
+		log.Fatal(`Initialize logger with Sentry enabled before calling "logger.GetSentryGin()"`)
 	}
 	return sentrygin.New(sentrygin.Options{
 		Repanic: true,
