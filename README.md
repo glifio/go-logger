@@ -25,6 +25,7 @@ func main() {
 		SentryEnabled: true,
 		SentryDsn:     "https://abc123.ingest.sentry.io/1234567",
 		SentryEnv:     "Development",
+		SentryLevel:   logger.LogLevelWarning,
 		SentryTraces:  0,
 	})
 	if err != nil {
