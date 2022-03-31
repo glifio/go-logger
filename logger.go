@@ -71,6 +71,18 @@ func GetSentryGin() gin.HandlerFunc {
 	})
 }
 
+func Debugf(format string, v ...any) {
+	Debug(fmt.Sprintf(format, v...))
+}
+
+func Infof(format string, v ...any) {
+	Info(fmt.Sprintf(format, v...))
+}
+
+func Warningf(format string, v ...any) {
+	Warning(fmt.Sprintf(format, v...))
+}
+
 func Debug(message string) {
 	if !initialized {
 		log.Print(`Initialize logger before calling "logger.Debug()"`)
