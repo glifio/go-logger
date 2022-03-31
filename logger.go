@@ -8,11 +8,21 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type LogLevel int
+
+const (
+	LogLevelDebug LogLevel = iota
+	LogLevelInfo
+	LogLevelWarning
+	LogLevelError
+)
+
 type LoggerOptions struct {
 	ModuleName    string
 	SentryEnabled bool
 	SentryDsn     string
 	SentryEnv     string
+	SentryLevel   LogLevel
 	SentryTraces  float64
 }
 
