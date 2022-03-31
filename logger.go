@@ -1,6 +1,7 @@
 package logger
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/getsentry/sentry-go"
@@ -74,10 +75,9 @@ func Info(message string) {
 	if !initialized {
 		log.Print(`Initialize logger before calling "logger.Info()"`)
 	}
-	if initialized && options.SentryEnabled {
-		sentry.CaptureMessage(message)
-	}
-	log.Printf("Info: %v", message)
+	formatted := fmt.Sprintf("Info: %v", message)
+	sendMessageToSentry(LogLevelInfo, formatted)
+	log.Printf(formatted)
 }
 
 func Error(err error) {
@@ -88,4 +88,10 @@ func Error(err error) {
 		sentry.CaptureException(err)
 	}
 	log.Printf("Error: %v", err)
+}
+
+func sendMessageToSentry(level LogLevel, message string) {
+	if initialized && options.SentryEnabled && level >= options.SentryLevel {
+		sentry.CaptureMessage(message)
+	}
 }
