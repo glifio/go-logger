@@ -6,7 +6,7 @@ Logger to be used in Glif.io Go modules, supports logging to [Sentry](https://se
 
 Always make sure to call `logger.Init()` at the start of the application. Failing to do so may cause the application to exit with an error when calling certain setup methods of the `logger` package.
 
-Calling `logger.Info()` or `logger.Error()` is safe before `logger.Init()`, to prevent applications exiting unexpectedly in production, but will log an additional warning message.
+Calling `logger.Debug()`, `logger.Info()`, `logger.Warning()` or `logger.Error()` is safe before `logger.Init()`, to prevent applications exiting unexpectedly in production, but will log an additional warning message.
 
 ```go
 package main

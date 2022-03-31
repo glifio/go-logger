@@ -71,12 +71,30 @@ func GetSentryGin() gin.HandlerFunc {
 	})
 }
 
+func Debug(message string) {
+	if !initialized {
+		log.Print(`Initialize logger before calling "logger.Debug()"`)
+	}
+	formatted := fmt.Sprintf("Debug: %v", message)
+	sendMessageToSentry(LogLevelDebug, formatted)
+	log.Printf(formatted)
+}
+
 func Info(message string) {
 	if !initialized {
 		log.Print(`Initialize logger before calling "logger.Info()"`)
 	}
 	formatted := fmt.Sprintf("Info: %v", message)
 	sendMessageToSentry(LogLevelInfo, formatted)
+	log.Printf(formatted)
+}
+
+func Warning(message string) {
+	if !initialized {
+		log.Print(`Initialize logger before calling "logger.Warning()"`)
+	}
+	formatted := fmt.Sprintf("Warning: %v", message)
+	sendMessageToSentry(LogLevelWarning, formatted)
 	log.Printf(formatted)
 }
 
