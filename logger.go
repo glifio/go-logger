@@ -98,6 +98,16 @@ func Fatalf(format string, v ...any) {
 	os.Exit(1)
 }
 
+func Panic(err error) {
+	Error(err)
+	panic(err.Error())
+}
+
+func Fatal(err error) {
+	Error(err)
+	os.Exit(1)
+}
+
 func Debug(message string) {
 	if !initialized {
 		log.Print(`Initialize logger before calling "logger.Debug()"`)
