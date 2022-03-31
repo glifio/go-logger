@@ -102,14 +102,18 @@ func Error(err error) {
 	if !initialized {
 		log.Print(`Initialize logger before calling "logger.Error()"`)
 	}
-	if initialized && options.SentryEnabled {
-		sentry.CaptureException(err)
-	}
+	sendErrorToSentry(err)
 	log.Printf("Error: %v", err)
 }
 
 func sendMessageToSentry(level LogLevel, message string) {
 	if initialized && options.SentryEnabled && level >= options.SentryLevel {
 		sentry.CaptureMessage(message)
+	}
+}
+
+func sendErrorToSentry(err error) {
+	if initialized && options.SentryEnabled {
+		sentry.CaptureException(err)
 	}
 }
