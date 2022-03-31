@@ -3,6 +3,7 @@ package logger
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/getsentry/sentry-go"
 	sentrygin "github.com/getsentry/sentry-go/gin"
@@ -85,6 +86,16 @@ func Warningf(format string, v ...any) {
 
 func Errorf(format string, v ...any) {
 	Error(fmt.Errorf(format, v...))
+}
+
+func Panicf(format string, v ...any) {
+	Error(fmt.Errorf(format, v...))
+	panic(fmt.Sprintf(format, v...))
+}
+
+func Fatalf(format string, v ...any) {
+	Error(fmt.Errorf(format, v...))
+	os.Exit(1)
 }
 
 func Debug(message string) {
