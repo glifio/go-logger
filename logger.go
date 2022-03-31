@@ -1,6 +1,7 @@
 package logger
 
 import (
+	"errors"
 	"fmt"
 	"log"
 
@@ -81,6 +82,10 @@ func Infof(format string, v ...any) {
 
 func Warningf(format string, v ...any) {
 	Warning(fmt.Sprintf(format, v...))
+}
+
+func Errorf(format string, v ...any) {
+	Error(errors.New(fmt.Sprintf(format, v...)))
 }
 
 func Debug(message string) {
